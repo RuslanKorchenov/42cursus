@@ -6,7 +6,7 @@
 /*   By: vnasium <mavrin@student.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 17:00:36 by vnasium           #+#    #+#             */
-/*   Updated: 2020/05/06 17:23:31 by vnasium          ###   ########.fr       */
+/*   Updated: 2020/05/16 15:09:37 by vnasium          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	*ft_calloc(size_t count, size_t size)
 
 	if (!(str = (unsigned char *)malloc(size * count)))
 		return (NULL);
-	ft_memset(str, 0, count);
+	ft_memset(str, 0, count * size);
 	return (str);
 }

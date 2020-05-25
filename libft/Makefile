@@ -47,12 +47,11 @@ OBJS = $(SRC:.c=.o)
 
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra
-
 INCLUDES = libft.h
-
+FLAGS = -Wall -Werror -Wextra
 NAME = libft.a
-	
+HEADER = libft.h
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -68,14 +67,14 @@ fclean: clean
 	@rm -f $(NAME)
 	@echo "Full clean complited!"
 
-$(OBJS):	%.o: %.c 
-	@gcc $(FLAGS) -o $@ -c $<
-
-$(BONUS_OBJS):	%.o: %.c 
-	@gcc $(FLAGS) -o $@ -c $<
+%.o: %.c $(INCLUDES)
+	@gcc $(FLAGS) -c $< -o $@
 
 re: fclean all
 
-bonus: $(BONUS_OBJS)
-	@ar rc $(NAME) $(OBJS) $(BONUS_OBJS)
+bonus: $(BONUS_OBJS) $(OBJS)
+	@ar rc $(NAME) $(BONUS_OBJS)
 	@ranlib $(NAME)
+	@echo "Bonus objects added"
+
+.PHONY: all clean fclean re
